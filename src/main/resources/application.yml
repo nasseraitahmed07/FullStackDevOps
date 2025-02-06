@@ -1,0 +1,105 @@
+spring:
+  application:
+    name: gestionStocke
+  profiles:
+    active: ${SPRING_ENVIRONMENT:local}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    database: postgresql
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+flyway:
+  enabled: true
+  baseline-on-migrate: true
+  locations: classpath:db/migration
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/gst_st_db
+    username: postgres
+    password: admin
+
+flyway:
+  enabled: true
+
+server:
+  servlet:
+    context-path: /stock
+  port: 8099
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+flyway:
+  enabled: true
+
+server:
+  servlet:
+    context-path: /stock
+  port: 8080
+
+---
+spring:
+  config:
+    activate:
+      on-profile: staging
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+flyway:
+  enabled: true
+
+server:
+  servlet:
+    context-path: /stock
+  port: 8080
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+flyway:
+  enabled: false
+
+server:
+  servlet:
+    context-path: /stock
+  port: 8080

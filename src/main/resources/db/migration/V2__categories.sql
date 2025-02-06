@@ -1,0 +1,16 @@
+INSERT INTO categorie (nom) VALUES
+('Électroménager'),
+('Informatique'),
+('Téléphonie'),
+('Mode et Vêtements'),
+('Beauté et Parfum'),
+('Alimentation et Boissons'),
+('Maison et Décoration'),
+('Bricolage et Jardinage'),
+('Automobile et Moto'),
+('Jeux et Jouets'),
+('Sport et Loisirs'),
+('Livres et Papeterie'),
+('Musique et Instruments'),
+('Santé et Bien-être'),
+('Animaux et Accessoires');
